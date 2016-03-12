@@ -1,2 +1,9 @@
 # mess-to-yes-client
-Do some stuff
+
+##USage
+```node index.js [port number]```
+
+Browse to http://localhost:[port number]
+
+##Developing
+```npm run-script watch```

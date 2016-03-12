@@ -1,7 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 var express = require('express');
-// var bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
 var http = require('http');
 var app = express();
 
@@ -23,8 +23,8 @@ app.all('*', function(req, res){
   res.sendFile('index.html', options);
 });
 
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 http.createServer(app).listen(port, function() {
   console.log('Express started: http://localhost:' + port + '/');

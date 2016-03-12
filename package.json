@@ -4,7 +4,8 @@
   "description": "Buy and sell any kind of data.",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "watch": "watchify spa_src/index.js -o public/bundle.js -t [ babelify --presets [ es2015 react ] ] -v"
   },
   "repository": {
     "type": "git",
