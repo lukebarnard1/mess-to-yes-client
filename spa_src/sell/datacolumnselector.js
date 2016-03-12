@@ -3,31 +3,30 @@ var React = require('react');
 var Link = require('react-router').Link;
 var ReactDOM = require('react-dom');
 
-import {Table, Column, Cell} from 'fixed-data-table';
+var DataGrid = require('react-datagrid');
 
 var DataColumnSelector = React.createClass({
 	getInitialState: function() {
 			return {
 				'data_from_server' : {
-					columns : {
-						'col_1' : 'number', 
-						'col_2' : 'datetime'
-					}, 
-					data : [[1,2,3,4,5,6,7,8],['1pm','2am','3am']] },
+					columns : [
+						{name : 'col_1', type : 'number'}, 
+						{name : 'col_2', type : 'time'}
+					], 
+					data : [{id: 0, col_1 : 1, col_2 :'1pm'},{id: 1, col_1 : 2, col_2 :'2pm'},{id: 2, col_1 : 3, col_2 :'3pm'}]} ,
 				'columns_selected' : {}};
 	},
 	componentDidMount: function() {
 		// Called when the component has loaded
 	},
 	render: function() {
-		var rows = this.state.data_from_server.data;
-		return (<Table
-			rowHeight={50}
-			rowsCount={rows.length}
-			headerHeight={50}
-			width={500}
-			height={100}>
-		</Table>);
+		var data = this.state.data_from_server.data;
+
+		var columns = this.state.data_from_server.columns;
+
+		return (
+			<DataGrid idProperty="id" dataSource={data} columns={columns}/>
+			);
 	}
 });
 

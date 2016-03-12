@@ -13,18 +13,19 @@ var BuyView = require('./buy/buyview.js');
 
 var browserHistory = require('react-router').browserHistory;
 
-ReactDOM.render((
+var router = (
 	<Router history={browserHistory}>
-		<Route path="/" component={Container}>
-			<Route path="buy" component={BuyView}/>
-			<Route path="buy/:id" component={BuyView}/>
-			<Route path="sell/" component={SellView}>
+		<Route path="/FaceHack/www/" component={Container}>
+			<Route path="/buy" component={BuyView}/>
+			<Route path="/buy/:id" component={BuyView}/>
+			<Route path="/sell/" component={SellView}>
 				<Route path="/sell/database" component={DatabaseForm}/>
 				<Route path="/sell/file" component={DataFileForm}/>
 			</Route>
-
 		</Route>
 	</Router>
-),
+);
+
+ReactDOM.render(router,
 	document.getElementById('content')
 );

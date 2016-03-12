@@ -14,7 +14,7 @@ var DatabaseForm = React.createClass({
 
 		console.log('Send to the server: ', this.state.data_to_send.tablename);
 
-		if (!this.state.data_to_send.db_table) {
+		if (!this.state.data_to_send.tablename) {
 			// Pull tables from the server
 			var tables = ['test_db_1', 'test_db_2'];
 

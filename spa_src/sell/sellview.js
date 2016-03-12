@@ -12,6 +12,7 @@ var SellView = React.createClass({
 	},
 	componentDidMount: function() {
 		// Called when the component has loaded
+		console.log(this.props.location.pathname);
 	},
 	databaseFormChange: function(e) {
 		var s = {};
