@@ -14,11 +14,10 @@ var BuyView = React.createClass({
 	render: function() {
 		return (
 			<div className="buyAPI">
-				<div className="buyCategories">
+				<div className="col-md-4 buyCategories">
 					<BuyCategories/>
 				</div>
-				<div className="buyAPIList">
-					<h1>API</h1>
+				<div className="col-md-8 buyAPIList">
 					<BuyAPIList/>
 				</div>
 			</div>

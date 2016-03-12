@@ -5,7 +5,18 @@ var BuyAPI = React.createClass({
 	render: function () {
 		return ( 
 			<li className="list-group-item">
-				{this.props.children.toString()}
+				<div className="apiLogo">
+					<a href={"/buy/" + this.props.id} className="thumbnail">
+						<img src={this.props.img} alt={this.props.title}/>
+					</a>
+				</div>
+				<div className="apiTitle">
+					<h4 className="list-group-item-heading">{this.props.title}</h4>
+					<div className="list-group-item-text">
+						<div>Ver. {this.props.version}</div>
+						<div>Uptime: 100%</div>
+					</div>
+				</div>
 			</li>
 	);
 }
