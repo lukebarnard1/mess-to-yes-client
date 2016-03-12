@@ -15,5 +15,17 @@
   "bugs": {
     "url": "https://github.com/lukebarnard1/mess-to-yes-client/issues"
   },
-  "homepage": "https://github.com/lukebarnard1/mess-to-yes-client#readme"
+  "homepage": "https://github.com/lukebarnard1/mess-to-yes-client#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "history": "^2.0.1",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-router": "^2.0.1"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-react": "^6.5.0",
+    "babelify": "^7.2.0"
+  }
 }
