@@ -13,7 +13,7 @@ var browserHistory = require('react-router').browserHistory;
 ReactDOM.render((
 	<Router history={browserHistory}>
 		<Route path="/" component={Container}>
-			<Route path="/sell" component={SellView}/>
+			<Route path="sell" component={SellView}/>
 		</Route>
 	</Router>
 ),

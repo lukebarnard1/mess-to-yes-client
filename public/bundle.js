@@ -23814,6 +23814,7 @@ module.exports = require('./lib/React');
 'use strict';
 
 var React = require('react');
+var Link = require('react-router').Link;
 var ReactDOM = require('react-dom');
 
 var Container = React.createClass({
@@ -23828,8 +23829,42 @@ var Container = React.createClass({
 	render: function render() {
 		return React.createElement(
 			'div',
-			null,
-			'Hello World!',
+			{ className: 'container' },
+			React.createElement(
+				'h1',
+				null,
+				' '
+			),
+			React.createElement(
+				'nav',
+				{ className: 'navbar navbar-default' },
+				React.createElement(
+					'div',
+					{ className: 'container-fluid' },
+					React.createElement(
+						'div',
+						{ className: 'navbar-header' },
+						React.createElement(
+							Link,
+							{ to: '/', className: 'navbar-brand' },
+							'Mess to Yes'
+						)
+					),
+					React.createElement(
+						'ul',
+						{ className: 'nav navbar-nav' },
+						React.createElement(
+							'li',
+							null,
+							React.createElement(
+								Link,
+								{ to: 'sell' },
+								'Sell'
+							)
+						)
+					)
+				)
+			),
 			this.props.children
 		);
 	}
@@ -23837,7 +23872,7 @@ var Container = React.createClass({
 
 module.exports = Container;
 
-},{"react":216,"react-dom":24}],218:[function(require,module,exports){
+},{"react":216,"react-dom":24,"react-router":52}],218:[function(require,module,exports){
 'use strict';
 
 var _reactRouter = require('react-router');
@@ -23859,14 +23894,21 @@ ReactDOM.render(React.createElement(
 	React.createElement(
 		_reactRouter.Route,
 		{ path: '/', component: Container },
-		React.createElement(_reactRouter.Route, { path: '/sell', component: SellView })
+		React.createElement(_reactRouter.Route, { path: 'sell', component: SellView })
 	)
 ), document.getElementById('content'));
 
 },{"./container.js":217,"./sell/sellview.js":219,"react":216,"react-dom":24,"react-router":52}],219:[function(require,module,exports){
 'use strict';
 
+var _reactRouter = require('react-router');
+
+var _reactRouter2 = _interopRequireDefault(_reactRouter);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var React = require('react');
+
 var ReactDOM = require('react-dom');
 
 var SellView = React.createClass({
@@ -23882,14 +23924,14 @@ var SellView = React.createClass({
 		return React.createElement(
 			'div',
 			null,
-			'Hello World!'
+			'Sell your data here!'
 		);
 	}
 });
 
 module.exports = SellView;
 
-},{"react":216,"react-dom":24}],220:[function(require,module,exports){
+},{"react":216,"react-dom":24,"react-router":52}],220:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};

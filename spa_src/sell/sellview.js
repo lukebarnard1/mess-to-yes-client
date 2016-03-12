@@ -1,5 +1,6 @@
 
 var React = require('react');
+import Link from 'react-router'
 var ReactDOM = require('react-dom');
 
 var SellView = React.createClass({
@@ -11,9 +12,7 @@ var SellView = React.createClass({
 	},
 	render: function() {
 		return (
-			<div>
-				Hello World!
-			</div>
+			<div>Sell your data here!</div>
 		 );
 	}
 });
