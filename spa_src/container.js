@@ -20,7 +20,7 @@ var Container = React.createClass({
 			      <Link to="/" className="navbar-brand">Mess to Yes</Link>
 			    </div>
 			  	<ul className="nav navbar-nav">
-			      <li><Link to="sell">Sell</Link></li>
+			      <li><Link to="/sell/">Sell</Link></li>
 			    </ul>
 			  </div>
 			</nav>
