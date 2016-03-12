@@ -12,6 +12,7 @@ var SellView = React.createClass({
 	},
 	componentDidMount: function() {
 		// Called when the component has loaded
+		console.log(this.props.location.pathname);
 	},
 	databaseFormChange: function(e) {
 		var s = {};
@@ -24,8 +25,12 @@ var SellView = React.createClass({
 				<div className="col-md-3">&nbsp;</div>
 				<div className="col-md-6">
 					<ul className="nav nav-tabs">
-						<li htmlrole="presentation"><Link to="/sell/database">Database</Link></li>
-						<li htmlrole="presentation"><Link to="/sell/file">Data File</Link></li>
+						<li className="nav-item">
+							<Link to="/sell/database">Database</Link>
+						</li>
+						<li className="nav-item">
+							<Link to="/sell/file">Data File</Link>
+						</li>
 					</ul>
 					{this.props.children}
 				</div>
