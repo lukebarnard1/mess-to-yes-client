@@ -1,24 +1,50 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var Link = require('react-router').Link;
 
 var data = 	[{
 	'title': "Shopping Data",
-	'img': "/static/retail.png",
+	'img': "/static/retail.jpg",
+	'code': "RET01",
+	'type': "retail"
+},{
+	'title': "Shopping Data",
+	'img': "/static/retail.jpg",
+	'code': "RET01",
+	'type': "retail"
+},{
+	'title': "Shopping Data",
+	'img': "/static/retail.jpg",
+	'code': "RET01",
+	'type': "retail"
+},{
+	'title': "Shopping Data",
+	'img': "/static/retail.jpg",
+	'code': "RET01",
+	'type': "retail"
+},{
+	'title': "Shopping Data",
+	'img': "/static/retail.jpg",
+	'code': "RET01",
+	'type': "retail"
+},{
+	'title': "Shopping Data",
+	'img': "/static/retail.jpg",
 	'code': "RET01",
 	'type': "retail"
 }];
 
 var allRows = [];
 for (var i=0; i < data.length; i++) {
-	allRows.push(<a href={"/buy/" + data[i].code}><div className="homePanel col-sm-6 col-md-4">
+	allRows.push(<div className="homePanel col-sm-6 col-md-3">
 			<div className="thumbnail">
-			  <img src={data[i].img} alt={data[i].code}/>
+			  <Link to={"/buy/" + data[i].code}><img src={data[i].img} alt={data[i].code}/></Link>
 			  <div className="caption">
-				<h3>{data[i].title}</h3>
+				<h5>{data[i].title}</h5>
 				<p>{data[i].description}</p>
 			  </div>
 			</div>
-		  </div></a>
+		  </div>
 	 );
 }
 
@@ -33,8 +59,14 @@ var HomeView = React.createClass({
 	render: function() {
 		return (
 			<div className="homePage">
-				<div className="searchBar input-group">
-			  		<input ref="searchBox" type="text" className="form-control" placeholder="Search for data..." onKeyPress={this._handleKeyPress}/>
+				<div className="homeBanner">
+					<div className="homeBox">
+						<h3>Data Stuff</h3>
+						<div className="searchBar input-group">
+							<input ref="searchBox" type="text" className="form-control" placeholder="Search for data..." onKeyPress={this._handleKeyPress}/>
+						</div>
+						<h5>Catchy tagline goes here.</h5>
+					</div>
 				</div>
 				<div className="row">
 					{allRows}
@@ -51,15 +83,15 @@ var HomeView = React.createClass({
 			
 		   for(var i = 0; i < data.length; i++) {
 				if (data[i].title.toLowerCase().indexOf(inputValue) > -1) {
-					allRows.push(<a href={"/buy/" + data[i].code}><div className="homePanel col-sm-6 col-md-4">
+					allRows.push(<div className="homePanel col-sm-6 col-md-3">
 					<div className="thumbnail">
-					  <img src={data[i].img} alt={data[i].code}/>
+					  <Link to={"/buy/" + data[i].code}><img src={data[i].img} alt={data[i].code}/></Link>
 					  <div className="caption">
-						<h3>{data[i].title}</h3>
+						<h5>{data[i].title}</h5>
 						<p>{data[i].description}</p>
 					  </div>
 					</div>
-				  </div></a>
+				  </div>
 				);
 				}
 		   }

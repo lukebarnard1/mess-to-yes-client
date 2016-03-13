@@ -1,14 +1,15 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var Link = require('react-router').Link;
 
 var BuyAPI = React.createClass({
 	render: function () {
 		return ( 
 			<li className="list-group-item">
 				<div className="apiLogo">
-					<a href={"/buy/" + this.props.id} className="thumbnail">
+					<Link to={"/buy/" + this.props.id} className="thumbnail">
 						<img src={this.props.img} alt={this.props.title}/>
-					</a>
+					</Link>
 				</div>
 				<div className="apiTitle">
 					<h4 className="list-group-item-heading">{this.props.title}</h4>

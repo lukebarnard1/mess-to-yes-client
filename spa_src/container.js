@@ -20,6 +20,7 @@ var Container = React.createClass({
 					<div><nav className="navbar navbar-default">
 					  <div className="container-fluid">
 						<ul className="nav navbar-nav">
+							<li className="companyName"><Link to="/home">DataCurator</Link></li>
 							<li><Link to="/register">Register</Link></li>
 							<li><Link to="/login">Login</Link></li>
 							<li><Link to="/buy">Buy</Link></li>
@@ -28,7 +29,6 @@ var Container = React.createClass({
 					  </div>
 					</nav>
 					</div>
-					<a href="/FaceHack/www/home"><img src="static/lemondata.png" alt="Lemon Data"/></a>
 				</div>
 			 {this.props.children}
 			</div>

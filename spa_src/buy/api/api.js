@@ -1,5 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var Link = require('react-router').Link;
 
 //var ChartJS = require('chartjs');
 //var LineChart = require("react-chartjs").Line;
@@ -76,7 +77,7 @@ var ReactDOM = require('react-dom');
 
 var data = 	{
 	'title': "Shopping Data",
-	'img': "/static/retail.png",
+	'img': "/static/retail.jpg",
 	'code': "RET01",
 	'type': "retail",
 	'version': "0.01",
@@ -95,7 +96,7 @@ var data = 	{
 var paymentOptions = [];
 for (var i=0; i < data.paymentOptions.length; i++) {
 	paymentOptions.push(
-			  <div>{data.paymentOptions[i].description} = {data.paymentOptions[i].price}</div>
+			  <li><Link to="#">{data.paymentOptions[i].description} for {data.paymentOptions[i].price}</Link></li>
 	 );
 }
 
@@ -109,9 +110,9 @@ var API = React.createClass({
 		
   			<div className="panel-body">
     			<div className="col-xs-6 col-md-3">
-					<a href="#" className="thumbnail">
+					<div className="thumbnail">
 						<img src={data.img} alt={data.title}/>
-					</a>
+					</div>
 				</div>
 				
 				<div className="col-xs-6 col-md-4">
@@ -123,8 +124,18 @@ var API = React.createClass({
 		
 				<div className="col-xs-6 col-md-5">
 					<div>Payment options: </div>
-					{ paymentOptions }
-
+					<div className="paymentSelection dropdown">
+					  <button className="optionsButton btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						Select payment option
+						<span className="caret"></span>
+					  </button>
+					<button type="button" className="purchaseOption btn btn-primary">
+    					Purchase
+  					</button>
+					  <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
+						{ paymentOptions }
+					  </ul>
+					</div>
 				</div>
 		
 				<table className="table">
@@ -158,13 +169,9 @@ var API = React.createClass({
 								Content-Length: 10<br/>
 								Content-Type: application/json; charset=utf-8<br/>
 								Date: Sat, 12 Mar 2016 17:57:48 GMT<br/>
-								Etag: W/"a-SxLlzPl2dGi05bEsdOVLrg"<br/>
-								Server: Mashape/5.0.6<br/>
-								Via: 1.1 vegur<br/>
-								X-Powered-By: Express<br/>
 								<br/>
 								&#123;<br/>
-								  &emsp;"age": 22<br/>
+								<br/>
 								&#125;<br/>
 
 							</p>

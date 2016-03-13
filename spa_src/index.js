@@ -22,14 +22,14 @@ var browserHistory = require('react-router').browserHistory;
 
 var router = (
 	<Router history={browserHistory}>
-
 		<Route path="/FaceHack/www/" component={Container}>
+		<Route path="/" component={Container}>
 			<Route path="/register" component={RegisterView}/>
 			<Route path="/login" component={LoginView}/>
 			<Route path="/home" component={HomeView}/>
 			<Route path="/test" component={TestView}/>
 			<Route path="/buy" component={BuyView}/>
-			<Route path="/buy/:id" component={BuyView}/>
+			<Route path="/buy/:id" component={APIView}/>
 			<Route path="/sell" component={SellView}>
 				<Route path="/sell/database" component={DatabaseForm}/>
 				<Route path="/sell/file" component={DataFileForm}/>
