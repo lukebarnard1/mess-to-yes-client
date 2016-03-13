@@ -23,7 +23,6 @@ var browserHistory = require('react-router').browserHistory;
 var router = (
 	<Router history={browserHistory}>
 		<Route path="/FaceHack/www/" component={Container}>
-		<Route path="/" component={Container}>
 			<Route path="/register" component={RegisterView}/>
 			<Route path="/login" component={LoginView}/>
 			<Route path="/home" component={HomeView}/>
