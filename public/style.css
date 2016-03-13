@@ -50,7 +50,7 @@ body {
 }
 
 .homePage .homeBanner {
-	background-image: url('/static/banner1.jpg');
+	background-image: url('/FaceHack/www/static/banner1.jpg');
 	position: relative;
 	height: 400px;
 }
@@ -114,7 +114,7 @@ body {
 .homePage .row {
 	margin-left: 0px;
 	margin-right: 0px;
-	background-image: url("/static/pixel_weave/pixel_weave.png");
+	background-image: url("/FaceHack/www/static/pixel_weave/pixel_weave.png");
     background-repeat: repeat;
 	padding: 35px;
 }

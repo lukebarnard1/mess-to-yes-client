@@ -10,14 +10,47 @@ var Register = React.createClass({
 			return {};
 	},
 	handleSubmit: function(e) {
-		console.log('Perform register ', e);
+		$.ajax({
+		  method: "POST",
+		  url: "/FaceHack/www/assets/php/user/UserFunctions.php",
+		  data: {'function' : 'register', 'username' : e.username, 'password' : e.password},
+		  dataType: "json"
+		}).done(function(resp){
+			if (resp.success) {
+				this.setState({msg : "You're registered, welcome!", msg_class:"alert alert-success"});
+
+				$.ajax({
+				  method: "POST",
+				  url: "/FaceHack/www/assets/php/user/UserFunctions.php",
+				  data: {'function' : 'getUserId'},
+				  dataType: "json"
+				}).done(function(resp){
+					console.log('user id', resp);	
+				}.bind(this));
+
+			} else {
+				this.setState({msg : resp.message, msg_class:"alert alert-danger"});
+			}
+		}.bind(this));
 	},
 	componentDidMount: function() {
 		// Called when the component has loaded
 	},
 	render: function() {
+		var message_box = "";
+		if (this.state.msg) {
+			message_box = (
+				<span className={this.state.msg_class}>{this.state.msg}</span>
+			);
+		}
 		return (
-			<UserPassForm title="Register" onSubmit={this.handleSubmit}/>
+			<div className="row">
+				<div className="col-md-4">&nbsp;</div>
+				<div className="col-md-4">
+					<UserPassForm title="Register" onSubmit={this.handleSubmit}/>
+					{message_box}
+				</div> 
+			</div>
 		 );
 	}
 });
