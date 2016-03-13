@@ -22,11 +22,12 @@ var Container = React.createClass({
 						<ul className="nav navbar-nav">
 							<li><Link to="/buy">Buy</Link></li>
 							<li><Link to="/sell">Sell</Link></li>
+							<li><Link to="/test">???Test???</Link></li>
 						</ul>
 					  </div>
 					</nav>
 					</div>
-					<a href="/FaceHack/www/home"><img src="/static/lemondata.png" alt="Lemon Data"/></a>
+					<a href="/FaceHack/www/home"><img src="static/lemondata.png" alt="Lemon Data"/></a>
 				</div>
 			 {this.props.children}
 			</div>

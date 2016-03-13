@@ -12,7 +12,7 @@ var DatabaseForm = React.createClass({
 				ip: "localhost",
 				port: "3306",
 				user: "root"
-			}, 'data_from_server' : undefined};
+			}, 'data' : undefined, 'columns' : undefined};
 	},
 	handleSubmit: function(e) {
 		e.preventDefault();
@@ -39,7 +39,9 @@ var DatabaseForm = React.createClass({
 					var tableinfo = response.response.tableinfo;
 					var tabledata = response.response.tabledata;
 					
-					this.setState({data_from_server : {'tableinfo' : tableinfo, 'tabledata' : tabledata}});
+					this.setState({data : undefined}, function(){
+						this.setState({data : tabledata, columns : tableinfo});
+					});
 				}
 			}
 		}.bind(this);
@@ -96,82 +98,88 @@ var DatabaseForm = React.createClass({
 				);
 		}
 
-		if (this.state.data_from_server) {
+		if (this.state.data) {
 			selector = (
-				<DataColumnSelector data={this.state.data_from_server} selectColumns={this.handleColumnsSelect}/>
+				<DataColumnSelector data={this.state.data} columns={this.state.columns} selectColumns={this.handleColumnsSelect}/>
 			);
 		}
 
 		return (
 			<div>
-				<h2>Database Source</h2>
-				<form onSubmit={this.handleSubmit}>
-					<div className="row">
-						<div className="col-md-8">
-							<label htmlFor="ip">Database URL</label>
-							<input
-								className="form-control"
-								type="url"
-								placeholder="Database URL"
-								onChange={this.databaseFormChange}
-								defaultValue="localhost"
-								name="ip"
-							/>
-					 </div>
-						<div className="col-md-4">
-							<label htmlFor="port">Database Port</label>
-							<input
-								className="form-control col-md-4"
-								type="number"
-								placeholder="Database Port"
-								onChange={this.databaseFormChange}
-								defaultValue="3306"
-								name="port"
-							/>
-					 </div>
-					</div>
-					<div className="row">
-						<div className="col-md-6">
-							<label htmlFor="user">Username</label>
+				<div className="row">
+					<div className="col-md-3">&nbsp;</div>
+					<div className="col-md-6">
+						<h2>Database Source</h2>
+						<form onSubmit={this.handleSubmit}>
+							<div className="row">
+								<div className="col-md-8">
+									<label htmlFor="ip">Database URL</label>
+									<input
+										className="form-control"
+										type="url"
+										placeholder="Database URL"
+										onChange={this.databaseFormChange}
+										defaultValue="localhost"
+										name="ip"
+									/>
+							 </div>
+								<div className="col-md-4">
+									<label htmlFor="port">Database Port</label>
+									<input
+										className="form-control col-md-4"
+										type="number"
+										placeholder="Database Port"
+										onChange={this.databaseFormChange}
+										defaultValue="3306"
+										name="port"
+									/>
+							 </div>
+							</div>
+							<div className="row">
+								<div className="col-md-6">
+									<label htmlFor="user">Username</label>
+									<input
+										className="form-control"
+										type="text"
+										placeholder="username"
+										onChange={this.databaseFormChange}
+										defaultValue="root"
+										name="user"
+									/>
+								</div>
+								<div className="col-md-6">
+									<label htmlFor="pass">Password</label>
+									<input
+										className="form-control"
+										type="password"
+										placeholder="password"
+										onChange={this.databaseFormChange}
+										name="pass"
+									/>
+								</div>
+							</div>
+							<label htmlFor="dbname">Database Name</label>
 							<input
 								className="form-control"
 								type="text"
-								placeholder="username"
+								placeholder="Database Name"
 								onChange={this.databaseFormChange}
-								defaultValue="root"
-								name="user"
+								defaultValue="fbhackathon"
+								name="dbname"
 							/>
-						</div>
-						<div className="col-md-6">
-							<label htmlFor="pass">Password</label>
-							<input
-								className="form-control"
-								type="password"
-								placeholder="password"
-								onChange={this.databaseFormChange}
-								name="pass"
-							/>
-						</div>
+							{db_tables_selector}
+							<div className="well-sm">
+								<button 
+									className="btn btn-default"
+									type="button"
+									onClick={this.handleSubmit}>
+									{btn_text}
+								</button>
+							</div>
+						</form>
 					</div>
-					<label htmlFor="dbname">Database Name</label>
-					<input
-						className="form-control"
-						type="text"
-						placeholder="Database Name"
-						onChange={this.databaseFormChange}
-						defaultValue="fbhackathon"
-						name="dbname"
-					/>
-					{db_tables_selector}
-					<div className="well-sm">
-						<button 
-							className="btn btn-default"
-							type="button"
-							onClick={this.handleSubmit}>
-							{btn_text}
-						</button>
-					</div>
-				</form>
+					<div className="col-md-3">&nbsp;</div>
+				</div>
 				{selector}
 			</div>
 		 );

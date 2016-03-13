@@ -8,17 +8,15 @@ var DataGrid = require('react-datagrid');
 var DataColumnSelector = React.createClass({
 	getInitialState: function() {
 		return {
-			'data' : {
-				"tableinfo":[],
-				"tabledata":[]
-				},
-				columns_selected : [] // means all selected: if a column isn't in there, it's selected!
-			};
+			data : [],
+			columns : [],
+			columns_selected : [] // means all selected: if a column isn't in there, it's selected!
+		};
 	},
 	componentDidMount: function() {
 		// Called when the component has loaded
 
-		this.setState({data : this.props.data});
+		this.setState({data : this.props.data, columns : this.props.columns});
 	},
 	is_col_selected: function(colname) {
 		var selected = this.state.columns_selected;
@@ -32,7 +30,7 @@ var DataColumnSelector = React.createClass({
 		return is_col_selected;
 	},
 	selectColumns: function(e) {
-		var columns = this.state.data.tableinfo;
+		var columns = this.state.columns;
 
 		var ncolumns = [];
 
@@ -47,8 +45,8 @@ var DataColumnSelector = React.createClass({
 		this.props.selectColumns(ncolumns);
 	},
 	render: function() {
-		var data = this.state.data.tabledata;
-		var columns = this.state.data.tableinfo;
+		var data = this.state.data;
+		var columns = this.state.columns;
 
 		var id_prop = "id";
 
@@ -96,13 +94,16 @@ var DataColumnSelector = React.createClass({
 			}
 		}
 
+		var s = {marginBottom : '50px'};
+
 		return (
-			<div>
+			<div style={s}>
+				Toggle columns and then confirm:
 				<div className="flex-box">
 					{tick_boxes}
 				</div>
 				<DataGrid idProperty={id_prop} dataSource={data} columns={visible_columns}/>
-				<button type="button" className="btn btn-default" onClick={this.selectColumns}>Select Columns</button>
+				<button type="button" className="btn btn-default" onClick={this.selectColumns}>Confirm columns</button>
 			</div>
 			);
 	}
