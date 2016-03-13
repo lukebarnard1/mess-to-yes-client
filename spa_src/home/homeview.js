@@ -3,33 +3,23 @@ var ReactDOM = require('react-dom');
 var Link = require('react-router').Link;
 
 var data = 	[{
-	'title': "Shopping Data",
+	'title': "Visitors to Westfield London",
 	'img': "/static/retail.jpg",
 	'code': "RET01",
 	'type': "retail"
 },{
-	'title': "Shopping Data",
-	'img': "/static/retail.jpg",
+	'title': "Amateur Athletics in Greater Britain",
+	'img': "/static/athletics.jpg",
+	'code': "ATL01",
+	'type': "retail"
+},{
+	'title': "Crime Statistics for Chicago",
+	'img': "/static/criminal.jpg",
 	'code': "RET01",
 	'type': "retail"
 },{
-	'title': "Shopping Data",
-	'img': "/static/retail.jpg",
-	'code': "RET01",
-	'type': "retail"
-},{
-	'title': "Shopping Data",
-	'img': "/static/retail.jpg",
-	'code': "RET01",
-	'type': "retail"
-},{
-	'title': "Shopping Data",
-	'img': "/static/retail.jpg",
-	'code': "RET01",
-	'type': "retail"
-},{
-	'title': "Shopping Data",
-	'img': "/static/retail.jpg",
+	'title': "London Air Quality Statistics",
+	'img': "/static/airquality.jpg",
 	'code': "RET01",
 	'type': "retail"
 }];
@@ -37,12 +27,13 @@ var data = 	[{
 var allRows = [];
 for (var i=0; i < data.length; i++) {
 	allRows.push(<div className="homePanel col-sm-6 col-md-3">
-			<div className="thumbnail">
+			<div className="panel"><div className="thumbnail">
 			  <Link to={"/buy/" + data[i].code}><img src={data[i].img} alt={data[i].code}/></Link>
 			  <div className="caption">
 				<h5>{data[i].title}</h5>
 				<p>{data[i].description}</p>
 			  </div>
+				 </div>
 			</div>
 		  </div>
 	 );

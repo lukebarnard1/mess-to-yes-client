@@ -76,12 +76,12 @@ var chartOptions = {
 };
 
 var data = 	{
-	'title': "Shopping Data",
+	'title': "Visitors to Westfield London",
 	'img': "/static/retail.jpg",
 	'code': "RET01",
 	'type': "retail",
 	'version': "0.01",
-	'description': "All the data about shoppers in a given shop.",
+	'description': "All the data about shoppers visiting Westfield London.",
 	'lastUpdated': "8th March 2016",
 	'size': "100kB",
 	'paymentOptions': [
