@@ -4,32 +4,32 @@ var Link = require('react-router').Link;
 
 var data = 	[{
 	'title': "Shopping Data",
-	'img': "/static/retail.jpg",
+	'img': "/FaceHack/www/static/retail.jpg",
 	'code': "RET01",
 	'type': "retail"
 },{
 	'title': "Shopping Data",
-	'img': "/static/retail.jpg",
+	'img': "/FaceHack/www/static/retail.jpg",
 	'code': "RET01",
 	'type': "retail"
 },{
 	'title': "Shopping Data",
-	'img': "/static/retail.jpg",
+	'img': "/FaceHack/www/static/retail.jpg",
 	'code': "RET01",
 	'type': "retail"
 },{
 	'title': "Shopping Data",
-	'img': "/static/retail.jpg",
+	'img': "/FaceHack/www/static/retail.jpg",
 	'code': "RET01",
 	'type': "retail"
 },{
 	'title': "Shopping Data",
-	'img': "/static/retail.jpg",
+	'img': "/FaceHack/www/static/retail.jpg",
 	'code': "RET01",
 	'type': "retail"
 },{
 	'title': "Shopping Data",
-	'img': "/static/retail.jpg",
+	'img': "/FaceHack/www/static/retail.jpg",
 	'code': "RET01",
 	'type': "retail"
 }];

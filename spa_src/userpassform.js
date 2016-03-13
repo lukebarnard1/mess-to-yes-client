@@ -21,45 +21,43 @@ var UserPassForm = React.createClass({
 		this.setState(s);
 	},
 	render: function() {
+		var s = {'marginTop' : '5px', 'width' : '100%'};
 		return (
-			<div className="row">
-				<div className="col-md-4">&nbsp;</div>
-				<div className="col-md-4">
-					<div className="panel panel-default">
-						<div className="panel-heading">{this.props.title}</div>
-						<div className="panel-body">
-							<form onSubmit={this.handleSubmit}>
-								<div className="row">
-									<div className="col-md-8">
-										<label htmlFor="username">Username</label>
-										<input
-											className="form-control"
-											type="url"
-											placeholder="username"
-											onChange={this.formChange}
-											name="username"
-										/>
-								  </div>
-									<div className="col-md-4">
-										<label htmlFor="password">Password</label>
-										<input
-											className="form-control col-md-4"
-											type="password"
-											placeholder="password"
-											onChange={this.formChange}
-											name="password"
-										/>
-								  </div>
-								</div>
-								<button 
-									className="btn btn-default"
-									type="button"
-									onClick={this.handleSubmit}>
-									{this.props.title}
-								</button>
-							</form>
+			<div className="panel panel-default">
+				<div className="panel-heading">{this.props.title}</div>
+				<div className="panel-body">
+					<form onSubmit={this.handleSubmit}>
+						<div className="row">
+							<div className="col-md-8">
+								<label htmlFor="username">Username</label>
+								<input
+									className="form-control"
+									type="url"
+									placeholder="username"
+									onChange={this.formChange}
+									name="username"
+								/>
+						  </div>
+							<div className="col-md-4">
+								<label htmlFor="password">Password</label>
+								<input
+									className="form-control col-md-4"
+									type="password"
+									placeholder="password"
+									onChange={this.formChange}
+									name="password"
+								/>
+						  </div>
 						</div>
-					</div>
+
+						<button
+							style={s} 
+							className="btn btn-default"
+							type="button"
+							onClick={this.handleSubmit}>
+							{this.props.title}
+						</button>
+					</form>
 				</div>
 			</div>
 		 );

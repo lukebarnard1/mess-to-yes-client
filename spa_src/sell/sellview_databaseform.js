@@ -5,6 +5,8 @@ var ReactDOM = require('react-dom');
 
 var DataColumnSelector = require('./datacolumnselector.js');
 
+var send_finalised = require('./thing.js');
+
 var DatabaseForm = React.createClass({
 	getInitialState: function() {
 			return {'data_to_send' : {
@@ -67,7 +69,10 @@ var DatabaseForm = React.createClass({
 		this.setState(s);
 	},
 	handleColumnsSelect: function(cols) {
-		console.log('Send columns to server ', cols);
+		var sf = send_finalised.bind(this);
+		sf(cols, function(res) {
+			console.log(res);
+		}.bind(this));
 	},
 	render: function() {
 		var db_tables_selector = "";

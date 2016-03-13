@@ -5,6 +5,8 @@ var ReactDOM = require('react-dom');
 
 var DataColumnSelector = require('./datacolumnselector.js');
 
+var send_finalised = require('./thing.js');
+
 var DataFileForm = React.createClass({
 	getInitialState: function() {
 		return {progress : 0, data_to_send : "", data_from_server : undefined, user_id : 'PLACEHOLDER_USERID'};
@@ -49,8 +51,13 @@ var DataFileForm = React.createClass({
 		request.open("POST", "/FaceHack/www/assets/php/vendor/process-regex.php");
 		request.send(formData);
 	},
-	handleColumnsSelect: function(cols) {
-		console.log('Send columns to server ', cols);
+	handleColumnsSelect: function(cols, dataTitle, dataDesc) {
+		this.setState({dataTitle : dataTitle, dataDescription: dataDesc}, function (){
+			var sf = send_finalised.bind(this);
+			sf(cols, function(res) {
+				console.log(res);
+			}.bind(this));
+		});
 	},
 	componentDidMount: function() {
 		// Called when the component has loaded

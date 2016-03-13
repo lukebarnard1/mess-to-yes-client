@@ -13,6 +13,11 @@ var DataColumnSelector = React.createClass({
 			columns_selected : [] // means all selected: if a column isn't in there, it's selected!
 		};
 	},
+	formChange: function(e) {
+		var s = {};
+		s[e.target.name] = e.target.value;
+		this.setState(s);
+	},
 	componentDidMount: function() {
 		// Called when the component has loaded
 
@@ -42,7 +47,7 @@ var DataColumnSelector = React.createClass({
 			if (is_col_selected)ncolumns.push(col);
 		}
 
-		this.props.selectColumns(ncolumns);
+		this.props.selectColumns(ncolumns, this.state.dataTitle, this.state.dataDescription);
 	},
 	render: function() {
 		var data = this.state.data;
@@ -58,7 +63,7 @@ var DataColumnSelector = React.createClass({
 		}
 
 		columns = columns.map(function(col){
-			return {name : col.colname, type : col.coltype};
+			return {name : col.colname, type : col.coltype, resizeable:true};
 		});
 
 		var tick_boxes = columns.map(function (col, i) {
@@ -103,6 +108,28 @@ var DataColumnSelector = React.createClass({
 					{tick_boxes}
 				</div>
 				<DataGrid idProperty={id_prop} dataSource={data} columns={visible_columns}/>
+				<div className="row">
+					<div className="col-md-8">
+						<label htmlFor="dataTitle">Data Title</label>
+						<input
+							className="form-control"
+							type="url"
+							placeholder="Data Title"
+							onChange={this.formChange}
+							name="dataTitle"
+						/>
+				 </div>
+					<div className="col-md-4">
+						<label htmlFor="dataDescription">Data Description</label>
+						<input
+							className="form-control col-md-4"
+							type="text"
+							placeholder="Write a description..."
+							onChange={this.formChange}
+							name="dataDescription"
+						/>
+				 </div>
+				</div>
 				<button type="button" className="btn btn-default" onClick={this.selectColumns}>Confirm columns</button>
 			</div>
 			);

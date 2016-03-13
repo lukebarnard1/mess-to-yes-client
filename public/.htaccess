@@ -1,0 +1,1 @@
+RewriteRule /static/(.*) /FaceHack/www/static/$1 
