@@ -60,12 +60,12 @@ var HomeView = React.createClass({
 		return (
 			<div className="homePage">
 				<div className="homeBanner">
-					<div className="homeBox">
-						<h3>Data Stuff</h3>
-						<div className="searchBar input-group">
+					<div className="homeBox panel">
+						<div className="panel-body">
+							<h3>Find your next data innovation</h3>
 							<input ref="searchBox" type="text" className="form-control" placeholder="Search for data..." onKeyPress={this._handleKeyPress}/>
+							<h5>Your data{"\'"}s future is here</h5>
 						</div>
-						<h5>Catchy tagline goes here.</h5>
 					</div>
 				</div>
 				<div className="row">

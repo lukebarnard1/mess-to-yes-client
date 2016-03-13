@@ -11,7 +11,8 @@ var TestView = require('./testview.js');
 var SellView = require('./sell/sellview.js');
 	var DatabaseForm = require('./sell/sellview_databaseform.js');
 	var DataFileForm = require('./sell/sellview_datafileform.js');
-
+	var Intro = require('./sell/sellview_intro.js');
+	
 var BuyView = require('./buy/buyview.js');
 var APIView = require('./buy/api/apiview.js');
 
@@ -30,6 +31,7 @@ var router = (
 			<Route path="/buy" component={BuyView}/>
 			<Route path="/buy/:id" component={APIView}/>
 			<Route path="/sell" component={SellView}>
+				<Route path="/sell/intro" component={Intro}/>
 				<Route path="/sell/database" component={DatabaseForm}/>
 				<Route path="/sell/file" component={DataFileForm}/>
 			</Route>

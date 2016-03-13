@@ -16,20 +16,21 @@ var Container = React.createClass({
 	render: function() {
 		return (
 			<div className="container">
-				<div className="siteLogo">
-					<div><nav className="navbar navbar-default">
-					  <div className="container-fluid">
+				<nav className="navbar navbar-default">
+					<div className="container-fluid">
+						<div className="navbar-header">
+							<Link to="/home" className="navbar-brand">
+								<img width="200px" src="/FaceHack/www/static/logo.png"/>
+							</Link>
+						</div>
 						<ul className="nav navbar-nav">
-							<li className="companyName"><Link to="/home">DataCurator</Link></li>
 							<li><Link to="/register">Register</Link></li>
 							<li><Link to="/login">Login</Link></li>
 							<li><Link to="/buy">Buy</Link></li>
-							<li><Link to="/sell">Sell</Link></li>
+							<li><Link to="/sell/intro">Sell</Link></li>
 						</ul>
-					  </div>
-					</nav>
 					</div>
-				</div>
+				</nav>
 			 {this.props.children}
 			</div>
 		 );

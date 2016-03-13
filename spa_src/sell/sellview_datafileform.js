@@ -80,7 +80,7 @@ var DataFileForm = React.createClass({
 		var data_preview = "";
 
 		if (this.state.data_to_send) {
-			var data_preview_text = this.state.data_to_send.slice(0, 100);
+			var data_preview_text = this.state.data_to_send.slice(0, 800);
 
 			data_preview = (
 				<div>
