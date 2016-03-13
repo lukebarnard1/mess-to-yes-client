@@ -1,5 +1,12 @@
-style.css
 
 .buyAPI .buyCategories {
 	
+}
+
+.flex-box {
+	display: box;
+}
+
+.flex-box > * {
+	margin-right:5px;
 }

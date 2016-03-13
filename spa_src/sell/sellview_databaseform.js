@@ -7,35 +7,51 @@ var DataColumnSelector = require('./datacolumnselector.js');
 
 var DatabaseForm = React.createClass({
 	getInitialState: function() {
-			return {'data_to_send' : {}, 'data_from_server' : undefined};
+			return {'data_to_send' : {
+				dbname: "fbhackathon",
+				ip: "localhost",
+				port: "3306",
+				user: "root"
+			}, 'data_from_server' : undefined};
 	},
 	handleSubmit: function(e) {
 		e.preventDefault();
 
-		console.log('Send to the server: ', this.state.data_to_send.tablename);
+		var done = function(response) {
+			console.log(response);
+			console.log(response.message);
+			if (response.success) {
+				if (!this.state.data_to_send.tablename) {
+					// Pull tables from the server
+					var tablenames = response.response.tablenames;
 
-		if (!this.state.data_to_send.tablename) {
-			// Pull tables from the server
-			var tables = ['test_db_1', 'test_db_2'];
+					this.setState({db_tables : tablenames}, function() {
 
-			this.setState({db_tables : tables}, function() {
+						// Select first table by default
+						var s = {data_to_send : this.state.data_to_send};
 
-				// Select first table by default
-				var s = {data_to_send : this.state.data_to_send};
+						s.data_to_send['tablename'] = tablenames[0];
 
-				s.data_to_send['tablename'] = tables[0];
-
-				this.setState(s);
-			});
-		} else {
-			// db_table was set, expect to receive data_from_server
-			this.setState({data_from_server : 
-				{
-					columns : {'col_1' : 'number', 'col_2' : 'datetime'},
-					data : [[1,2,3,4,5,6,7,8],['1pm','2am','3am']]
+						this.setState(s);
+					});
+				} else {
+					// db_table was set, expect to receive data_from_server
+					var tableinfo = response.response.tableinfo;
+					var tabledata = response.response.tabledata;
+					
+					this.setState({data_from_server : {'tableinfo' : tableinfo, 'tabledata' : tabledata}});
 				}
-			});
-		}
+			}
+		}.bind(this);
+
+		console.log('Sending:',this.state.data_to_send);
+
+		$.ajax({
+		  method: "POST",
+		  url: "/FaceHack/www/assets/php/vendor/sql-import.php",
+		  data: this.state.data_to_send,
+		  dataType: "json"
+		}).done(done);
 	},
 	componentDidMount: function() {
 		// Called when the component has loaded
@@ -47,6 +63,9 @@ var DatabaseForm = React.createClass({
 
 		// Update the data_to_send
 		this.setState(s);
+	},
+	handleColumnsSelect: function(cols) {
+		console.log('Send columns to server ', cols);
 	},
 	render: function() {
 		var db_tables_selector = "";
@@ -79,7 +98,7 @@ var DatabaseForm = React.createClass({
 
 		if (this.state.data_from_server) {
 			selector = (
-				<DataColumnSelector data={this.state.data_from_server}/>
+				<DataColumnSelector data={this.state.data_from_server} selectColumns={this.handleColumnsSelect}/>
 			);
 		}
 
@@ -95,6 +114,7 @@ var DatabaseForm = React.createClass({
 								type="url"
 								placeholder="Database URL"
 								onChange={this.databaseFormChange}
+								defaultValue="localhost"
 								name="ip"
 							/>
 					 </div>
@@ -105,11 +125,23 @@ var DatabaseForm = React.createClass({
 								type="number"
 								placeholder="Database Port"
 								onChange={this.databaseFormChange}
+								defaultValue="3306"
 								name="port"
 							/>
 					 </div>
 					</div>
 					<div className="row">
+						<div className="col-md-6">
+							<label htmlFor="user">Username</label>
+							<input
+								className="form-control"
+								type="text"
+								placeholder="username"
+								onChange={this.databaseFormChange}
+								defaultValue="root"
+								name="user"
+							/>
+						</div>
 						<div className="col-md-6">
 							<label htmlFor="pass">Password</label>
 							<input
@@ -120,16 +152,6 @@ var DatabaseForm = React.createClass({
 								name="pass"
 							/>
 						</div>
-						<div className="col-md-6">
-							<label htmlFor="user">Username</label>
-							<input
-								className="form-control"
-								type="text"
-								placeholder="username"
-								onChange={this.databaseFormChange}
-								name="user"
-							/>
-						</div>
 					</div>
 					<label htmlFor="dbname">Database Name</label>
 					<input
@@ -137,6 +159,7 @@ var DatabaseForm = React.createClass({
 						type="text"
 						placeholder="Database Name"
 						onChange={this.databaseFormChange}
+						defaultValue="fbhackathon"
 						name="dbname"
 					/>
 					{db_tables_selector}
