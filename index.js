@@ -9,7 +9,7 @@ var port = process.argv[2];
 var config_path = process.argv[3];
 
 // Statically serve files in public directory
-app.use('/static/', express.static(path.join(__dirname, 'public')));
+app.use('/FaceHack/www/static/', express.static(path.join(__dirname, 'public')));
 
 app.all('*', function(req, res){
   var options = {
