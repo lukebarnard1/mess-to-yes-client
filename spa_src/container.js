@@ -20,9 +20,10 @@ var Container = React.createClass({
 					<div><nav className="navbar navbar-default">
 					  <div className="container-fluid">
 						<ul className="nav navbar-nav">
+							<li><Link to="/register">Register</Link></li>
+							<li><Link to="/login">Login</Link></li>
 							<li><Link to="/buy">Buy</Link></li>
 							<li><Link to="/sell">Sell</Link></li>
-							<li><Link to="/test">???Test???</Link></li>
 						</ul>
 					  </div>
 					</nav>
