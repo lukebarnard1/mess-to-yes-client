@@ -1,6 +1,18 @@
-.siteLogo {
-	padding-top: 30px;
-	padding-bottom: 50px;
+* {
+	font-family: 'Arial';
+}
+
+html, body, #content, .container {
+	height: 100%;
+}
+
+body {
+	background-color: #EFEFEF;
+}
+
+.container {
+	padding-left: 0px;
+	padding-right: 0px;
 }
 
 .siteLogo img {
@@ -8,29 +20,103 @@
 }
 
 .navbar.navbar-default {
-	width: auto;
-    float: right;
-    border-radius: 0px;
-    background-color: #FFF;
-    border: 0px solid #FFF;
-}
-	
-.homePage .searchBar {
-	border-radius: 0px;
 	width: 100%;
-    padding-bottom: 50px;
+    border-radius: 0px;
+    background-color: #3C469B;
+    border: 0px solid #FFF;
+	text-align: right;
 }
 
-.homePage .thumbnail img {
-	width: 50%;
+.navbar {
+	margin-bottom: 0px;
+}
+
+.navbar .companyName {
+	float: left;
+	font-weight: 600;
+    font-size: x-large;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: white;
+}
+
+.navbar-nav {
+	width: 100%;
+}
+
+.navbar-nav, .navbar-nav>li {
+	float: right;
+}
+
+.homePage .homeBanner {
+	background-image: url('/static/banner1.jpg');
+	position: relative;
+	height: 400px;
+}
+
+.homePage .homeBox {
+    position: relative;
+    top: 75px;
+    background: #fff;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 59px;
+    margin-bottom: 30px;
+    padding: 30px;
+    margin: 0 auto;
+}
+
+.homePage .homeBox h3, .homePage .homeBox h5 {
+	text-align: center;
+}
+
+.homePage .searchBar {
+	border-radius: 0px;
+	width: 75%;
+	margin:0 auto;
+}
+
+.homePage .searchBar .form-control {
+	outline: 2px solid #3C469B;
+}
+
+.homePage .searchBar .form-control:focus {
+	box-shadow: none;
+}
+
+.homePage .thumbnail {
+	background-color: transparent;
+	border: 0px solid #fff;
+	margin-top: 30px;
+}
+
+.homePage .thumbnail .caption {
+	color: black;
+}
+
+.homePage .thumbnail h5 {
+	font-weight: 600;
 }
 
 .homePage .homePanel {
 	text-align: center;
 }
 
-.buyCategories .searchBox {
+.homePage .row {
+	margin-left: 0px;
+	margin-right: 0px;
+	background-image: url("/static/pixel_weave/pixel_weave.png");
+    background-repeat: repeat;
+	padding: 35px;
+}
+
+.apiList .searchBox {
 	padding-bottom: 15px;
+}
+
+.buyAPI, .viewAPI {
+	margin: 30px;
 }
 
 .buyAPIList .apiLogo {
@@ -56,4 +142,17 @@
 .viewAPI .testOutput {
 	color: #FFF;
     background: rgba(0, 0, 0, 0.77);
+}
+
+.viewAPI .paymentSelection {
+	padding-top: 10px;
+}
+
+.viewAPI .paymentSelection .optionsButton {
+	width: 75%;
+	text-align: left;
+}
+
+.viewAPI .paymentSelection .purchaseOption {
+	margin-left: 15px;
 }
