@@ -22,18 +22,20 @@ var SellView = React.createClass({
 	render: function() {
 		return (
 			<div>
-				<div className="col-md-3">&nbsp;</div>
-				<div className="col-md-6">
-					<ul className="nav nav-tabs">
-						<li className="nav-item">
-							<Link to="/sell/database">Database</Link>
-						</li>
-						<li className="nav-item">
-							<Link to="/sell/file">Data File</Link>
-						</li>
-					</ul>
-					{this.props.children}
+				<div className="row">
+					<div className="col-md-3">&nbsp;</div>
+					<div className="col-md-6">
+						<ul className="nav nav-tabs">
+							<li className="nav-item">
+								<Link to="/sell/database">Database</Link>
+							</li>
+							<li className="nav-item">
+								<Link to="/sell/file">Data File</Link>
+							</li>
+						</ul>
+					</div>
 				</div>
+				{this.props.children}
 			</div>
 		 );
 	}

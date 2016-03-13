@@ -5,7 +5,7 @@ var Router = require('react-router').Router;
 var ReactDOM = require('react-dom');
 
 var Container = React.createClass({
-    mixins:[Router.State],  
+	mixins:[Router.State],  
 	getInitialState: function() {
 			return {};
 	},
@@ -23,6 +23,8 @@ var Container = React.createClass({
 							<li className="companyName"><Link to="/home">DataCurator</Link></li>
 							<li><Link to="/sell">Sell</Link></li>
 							<li><Link to="/buy">Buy</Link></li>
+							<li><Link to="/test">???Test???</Link></li>
+
 						</ul>
 					  </div>
 					</nav>

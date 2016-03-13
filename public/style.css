@@ -15,6 +15,11 @@ body {
 	padding-right: 0px;
 }
 
+.siteLogo {
+	padding-top: 30px;
+	padding-bottom: 50px;
+}
+
 .siteLogo img {
 	width: 30%;
 }
@@ -69,6 +74,14 @@ body {
 
 .homePage .homeBox h3, .homePage .homeBox h5 {
 	text-align: center;
+}
+	
+.flex-box {
+	display: box;
+}
+
+.flex-box > * {
+	margin-right:5px;
 }
 
 .homePage .searchBar {

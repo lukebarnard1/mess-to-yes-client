@@ -6,6 +6,7 @@ import { Router, Route, Link } from 'react-router'
 var Container = require('./container.js');
 
 var HomeView = require('./home/homeview.js');
+var TestView = require('./testview.js');
 
 var SellView = require('./sell/sellview.js');
 	var DatabaseForm = require('./sell/sellview_databaseform.js');
@@ -21,9 +22,10 @@ var router = (
 
 		<Route path="/" component={Container}>
 			<Route path="/home" component={HomeView}/>
+			<Route path="/test" component={TestView}/>
 			<Route path="/buy" component={BuyView}/>
-			<Route path="/buy/:id" component={APIView}/>
-			<Route path="/sell/" component={SellView}>
+			<Route path="/buy/:id" component={BuyView}/>
+			<Route path="/sell" component={SellView}>
 				<Route path="/sell/database" component={DatabaseForm}/>
 				<Route path="/sell/file" component={DataFileForm}/>
 			</Route>
