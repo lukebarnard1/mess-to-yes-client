@@ -164,3 +164,15 @@ body {
 .viewAPI .paymentSelection .purchaseOption {
 	margin-left: 15px;
 }
+
+.lineChart {
+	float: left;
+    width: 100%;
+	padding-top:30px;
+	padding-bottom: 30px;
+}
+
+.apiTable {
+	padding-top:30px;
+	padding-bottom: 30px;
+}

@@ -2,78 +2,78 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var Link = require('react-router').Link;
 
-//var ChartJS = require('chartjs');
-//var LineChart = require("react-chartjs").Line;
-//
-//var chartData = {
-//    labels: ["06/03", "07/03", "08/03", "09/03", "10/03", "11/03", "12/03"],
-//    datasets: [
-//        {
-//            label: "My First dataset",
-//            fillColor: "rgba(220,220,220,0.2)",
-//            strokeColor: "rgba(220,220,220,1)",
-//            pointColor: "rgba(220,220,220,1)",
-//            pointStrokeColor: "#fff",
-//            pointHighlightFill: "#fff",
-//            pointHighlightStroke: "rgba(220,220,220,1)",
-//            data: [100, 100, 100, 100, 100, 100, 100]
-//        }
-//    ]
-//};
-//
-//var chartOptions = {
-//
-//	scaleOverride : true,
-//	
-//	scaleSteps : 5,
-//	
-//	scaleStepWidth : 20,
-//	
-//	scaleStartValue : 0,
-//	
-//    ///Boolean - Whether grid lines are shown across the chart
-//    scaleShowGridLines : true,
-//
-//    //String - Colour of the grid lines
-//    scaleGridLineColor : "rgba(0,0,0,.05)",
-//
-//    //Number - Width of the grid lines
-//    scaleGridLineWidth : 1,
-//
-//    //Boolean - Whether to show horizontal lines (except X axis)
-//    scaleShowHorizontalLines: true,
-//
-//    //Boolean - Whether to show vertical lines (except Y axis)
-//    scaleShowVerticalLines: true,
-//
-//    //Boolean - Whether the line is curved between points
-//    bezierCurve : true,
-//
-//    //Number - Tension of the bezier curve between points
-//    bezierCurveTension : 0.4,
-//
-//    //Boolean - Whether to show a dot for each point
-//    pointDot : true,
-//
-//    //Number - Radius of each point dot in pixels
-//    pointDotRadius : 4,
-//
-//    //Number - Pixel width of point dot stroke
-//    pointDotStrokeWidth : 1,
-//
-//    //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
-//    pointHitDetectionRadius : 20,
-//
-//    //Boolean - Whether to show a stroke for datasets
-//    datasetStroke : true,
-//
-//    //Number - Pixel width of dataset stroke
-//    datasetStrokeWidth : 2,
-//
-//    //Boolean - Whether to fill the dataset with a colour
-//    datasetFill : true,
-//
-//};
+var ChartJS = require('chartjs');
+var LineChart = require("react-chartjs").Line;
+
+var chartData = {
+    labels: [],
+    datasets: [
+        {
+            label: "My First dataset",
+            fillColor: "rgba(220,220,220,0.2)",
+            strokeColor: "rgba(220,220,220,1)",
+            pointColor: "rgba(220,220,220,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data: []
+        }
+    ]
+};
+
+var chartOptions = {
+
+	scaleOverride : true,
+	
+	scaleSteps : 5,
+	
+	scaleStepWidth : 400,
+	
+	scaleStartValue : 0,
+	
+    ///Boolean - Whether grid lines are shown across the chart
+    scaleShowGridLines : true,
+
+    //String - Colour of the grid lines
+    scaleGridLineColor : "rgba(0,0,0,.05)",
+
+    //Number - Width of the grid lines
+    scaleGridLineWidth : 1,
+
+    //Boolean - Whether to show horizontal lines (except X axis)
+    scaleShowHorizontalLines: true,
+
+    //Boolean - Whether to show vertical lines (except Y axis)
+    scaleShowVerticalLines: true,
+
+    //Boolean - Whether the line is curved between points
+    bezierCurve : false,
+
+    //Number - Tension of the bezier curve between points
+    bezierCurveTension : 0,
+
+    //Boolean - Whether to show a dot for each point
+    pointDot : true,
+
+    //Number - Radius of each point dot in pixels
+    pointDotRadius : 4,
+
+    //Number - Pixel width of point dot stroke
+    pointDotStrokeWidth : 1,
+
+    //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+    pointHitDetectionRadius : 20,
+
+    //Boolean - Whether to show a stroke for datasets
+    datasetStroke : true,
+
+    //Number - Pixel width of dataset stroke
+    datasetStrokeWidth : 2,
+
+    //Boolean - Whether to fill the dataset with a colour
+    datasetFill : true,
+
+};
 
 var data = 	{
 	'title': "Shopping Data",
@@ -100,7 +100,37 @@ for (var i=0; i < data.paymentOptions.length; i++) {
 	 );
 }
 
+var rowHeadings = [];
+var rows = [];
+
 var API = React.createClass({
+	getInitialState: function() {
+		var data = [];
+		var done = function(response) {
+		if (response.response.length > 0) {
+			for (var i = 0; i < 15; i++) {
+				chartData.labels.push("" + i);
+				chartData.datasets[0].data.push(response.response[i].page_id);
+				rows.push(<tr>
+							<td>{i}</td>
+							<td>{response.response[i].page_id}</td>
+							<td>{response.response[i].page_content_model}</td>
+							<td>{response.response[i].page_title}</td>
+						</tr>);
+			}
+			rowHeadings = [<th>Row</th>, <th>Page ID</th>, <th>Page Content</th>, <th>Page Title</th>];
+			this.forceUpdate();
+			data = response.success;
+		}
+	}.bind(this);
+
+$.ajax({
+	method: "GET",
+	url: "/FaceHack/www/assets/php/data/GetData.php?getData",
+	dataType: "jsonp"
+}).done(done);
+	return {};
+	},
   render: function() {
     return (
 		<div className="panel panel-default">
@@ -137,8 +167,22 @@ var API = React.createClass({
 					  </ul>
 					</div>
 				</div>
-		
+				<div className="lineChart">
+					<div>Page ID</div>
+					<LineChart data={chartData} options={chartOptions} width="600" height="250"/>
+					<div>Row No.</div>
+				</div>
 				<table className="table">
+			  		<thead>
+						<tr>
+							{rowHeadings}
+						</tr>
+					</thead>
+					<tbody>
+						{rows}
+					</tbody>
+				</table>
+				<table className="apiTable table">
 			  		<thead>
 						<tr>
 							<th>API Call</th>
